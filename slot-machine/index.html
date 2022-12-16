@@ -28,7 +28,7 @@
       .game-content {
         position: relative;
         width: 100%;
-        margin:  100px auto;
+        margin: 100px auto;
       }
 
       .game-content img {
@@ -192,6 +192,7 @@
   <body>
     <div class="game-content">
       <img
+        id="bg"
         src="https://download.shengli.com/ui/control/lottery/images/2p.png"
       />
       <div class="game-prize-wrap">
@@ -218,36 +219,38 @@
     </div>
     <script>
       $(function () {
-        var _luckGame = $(".game-btn").luckGame({
-          sameTimeBegin: false, //是否同时开始，默认1
-          duration: 7000, //动画时间，默认5000
-          gameLen: 10, //产品抽奖数量， 可去掉
-          game_pagesize: 6, // 輪播次數
-          lottery_arr_init: [2, 3, 4], //初始化默认显示奖品数组
-          game_prize_box: ".game-prize-box", //奖品盒子
-          game_prize_ul: ".game-prize-ul", //奖品数组ul
-          game_img_root: [
-            "../img/10.png",
-            "../img/1.png",
-            "../img/2.png",
-            "../img/3.png",
-            "../img/4.png",
-            "../img/5.png",
-            "../img/6.png",
-            "../img/7.png",
-            "../img/8.png",
-            "../img/11.png",
-          ], //奖品图片根目录
-          end: function (result) {
-            alert('恭喜你中獎了');
-            window.location.href = '../christmas/index.html'
-          },
-        });
+        $("#bg").load(function () {
+          var _luckGame = $(".game-btn").luckGame({
+            sameTimeBegin: false, //是否同时开始，默认1
+            duration: 7000, //动画时间，默认5000
+            gameLen: 10, //产品抽奖数量， 可去掉
+            game_pagesize: 6, // 輪播次數
+            lottery_arr_init: [2, 3, 4], //初始化默认显示奖品数组
+            game_prize_box: ".game-prize-box", //奖品盒子
+            game_prize_ul: ".game-prize-ul", //奖品数组ul
+            game_img_root: [
+              "../img/10.png",
+              "../img/1.png",
+              "../img/2.png",
+              "../img/3.png",
+              "../img/4.png",
+              "../img/5.png",
+              "../img/6.png",
+              "../img/7.png",
+              "../img/8.png",
+              "../img/11.png",
+            ], //奖品图片根目录
+            end: function (result) {
+              alert("恭喜你中獎了");
+              window.location.href = "../christmas/index.html";
+            },
+          });
 
-        //开始抽奖
-        $(".game-btn").click(function () {
-          _luckGame.lottery_arr_number = [9, 9, 9]; //设置中奖结果数组
-          _luckGame.start();
+          //开始抽奖
+          $(".game-btn").click(function () {
+            _luckGame.lottery_arr_number = [9, 9, 9]; //设置中奖结果数组
+            _luckGame.start();
+          });
         });
       });
     </script>
